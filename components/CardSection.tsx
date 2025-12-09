@@ -33,7 +33,8 @@ const CardSection: React.FC<ModalSectionProps> = ({
       style={[
         styles.modal,
         {
-          height: modalHeight,
+          flex:1,
+          marginTop: 12,
           paddingBottom: 12 + insets.bottom,
           paddingLeft: 16 + (insets.left || 0),
           paddingRight: 16 + (insets.right || 0),
