@@ -1,6 +1,6 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // or any icon library
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import DirectMessageButton from "./DirectMessageButton";
 
 type Props = {
@@ -38,34 +38,41 @@ const HeaderRow: React.FC<Props> = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    width:"100%",
-    gap:13,
+    width: "100%",
+    gap: 4,
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 5,
-    paddingVertical: 10, // optional background
+    paddingLeft: 10,
+    paddingVertical: 10,
   },
 
   groupContainer: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 100,
+    flexShrink: 0,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    minHeight: 40,
+    borderRadius: 999,
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    alignSelf: "flex-start",
+    marginRight: 12,
   },
 
   groupText: {
     fontSize: 14,
     fontWeight: "600",
-    marginRight: 8,
+    marginRight: 10,
     color: "black",
   },
 
   groupBadge: {
     backgroundColor: "white",
     borderRadius: 999,
-    paddingHorizontal: 8,
-    paddingVertical: 2,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
     justifyContent: "center",
     alignItems: "center",
   },

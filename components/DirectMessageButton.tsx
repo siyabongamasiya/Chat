@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#FFD600", // bright yellow
+    backgroundColor: "#FFD600",
     paddingHorizontal: 18,
     paddingVertical: 10,
-    borderRadius: 100, // pill shape
+    borderRadius: 100,
     alignSelf: "flex-start",
   },
 

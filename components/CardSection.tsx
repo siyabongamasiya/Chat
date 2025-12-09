@@ -36,8 +36,8 @@ const CardSection: React.FC<ModalSectionProps> = ({
           flex:1,
           marginTop: 12,
           paddingBottom: 12 + insets.bottom,
-          paddingLeft: 16 + (insets.left || 0),
-          paddingRight: 16 + (insets.right || 0),
+          paddingLeft: 1,
+          paddingRight: 1,
         },
       ]}
     >
@@ -60,11 +60,10 @@ const CardSection: React.FC<ModalSectionProps> = ({
 
 const styles = StyleSheet.create({
   modal: {
-    backgroundColor: "#fff",
+    backgroundColor: "#F7F7F7",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     paddingVertical: 12,
-    paddingHorizontal: 16,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: -4 },
     shadowOpacity: 0.1,

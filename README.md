@@ -2,6 +2,8 @@
 
 This project contains **one React Native screen** created as a UI practice exercise. The goal is to build a clean and reusable **User List Item** component similar to a chat application's conversation list (WhatsApp, Messenger, etc.).
 
+![App Screenshot](./assets/images/designs.png)
+
 ---
 
 ## Features
