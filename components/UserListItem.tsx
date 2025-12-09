@@ -1,14 +1,15 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import Avatar from "./Avatar";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Avatar from "./Avatar";
 
 type Props = {
   username: string;
   message: string;
   avatar: any;
   badgeCount?: number; // if > 0 show red badge
-  isRead?: boolean;    // if true show blue ticks
+  isRead?: boolean; // if true show blue ticks
+  time?: string; // time shown above ticks or badge
   onPress?: () => void;
 };
 
@@ -18,11 +19,11 @@ const UserListItem: React.FC<Props> = ({
   avatar,
   badgeCount = 0,
   isRead = false,
+  time = "12:00",
   onPress,
 }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      
       {/* Avatar */}
       <Avatar size={55} source={avatar} badgeType="online" />
 
@@ -34,8 +35,9 @@ const UserListItem: React.FC<Props> = ({
         </Text>
       </View>
 
-      {/* Right section: unread badge OR blue double tick */}
+      {/* Right section: time above unread badge OR blue double tick */}
       <View style={styles.rightSection}>
+        <Text style={styles.timeText}>{time}</Text>
         {badgeCount > 0 ? (
           <View style={styles.unreadBadge}>
             <Text style={styles.unreadText}>{badgeCount}</Text>
@@ -48,7 +50,6 @@ const UserListItem: React.FC<Props> = ({
           />
         ) : null}
       </View>
-
     </TouchableOpacity>
   );
 };
@@ -83,6 +84,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     alignItems: "center",
     justifyContent: "center",
+    minWidth: 36,
+  },
+
+  timeText: {
+    fontSize: 11,
+    color: "#666",
+    marginBottom: 6,
   },
 
   unreadBadge: {
