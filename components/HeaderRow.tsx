@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 5,
-    paddingVertical: 10, // optional background
+    paddingVertical: 10, 
   },
 
   groupContainer: {

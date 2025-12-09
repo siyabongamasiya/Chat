@@ -60,7 +60,7 @@ const CardSection: React.FC<ModalSectionProps> = ({
 
 const styles = StyleSheet.create({
   modal: {
-    backgroundColor: "#fff",
+    backgroundColor: "#F7F7F7",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     paddingVertical: 12,
