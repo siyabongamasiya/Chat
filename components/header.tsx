@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "800",
     color: "#FFFFFF",
+    textDecorationLine: "underline",
   },
 
   // ⭐ NOW A PERFECT SQUARE
@@ -83,4 +84,3 @@ const styles = StyleSheet.create({
 });
 
 export default TopSection;
-
