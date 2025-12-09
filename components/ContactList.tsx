@@ -1,7 +1,9 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Avatar from "../components/Avatar";
 
 export default function ContactListSection() {
+  const insets = useSafeAreaInsets();
   const contacts = [
     { id: 1, img: "https://i.pravatar.cc/150?img=1", status: "online" },
     { id: 2, img: "https://i.pravatar.cc/150?img=2", status: "sleeping" },
@@ -11,7 +13,15 @@ export default function ContactListSection() {
   ];
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          paddingLeft: 16 + (insets.left || 0),
+          paddingRight: 16 + (insets.right || 0),
+        },
+      ]}
+    >
       {/* TITLE */}
       <Text style={styles.title}>
         <Text style={styles.titleHighlight}>Contact </Text>
@@ -23,6 +33,7 @@ export default function ContactListSection() {
         horizontal
         showsHorizontalScrollIndicator={false}
         style={{ marginTop: 14 }}
+        contentContainerStyle={{ paddingRight: 16 + (insets.right || 0) }}
       >
         {contacts.map((item) => (
           <View key={item.id} style={{ marginRight: 12 }}>

@@ -2,8 +2,17 @@ import CardSection from "@/components/CardSection";
 import ContactListSection from "@/components/ContactList";
 import TopSection from "@/components/header";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  useWindowDimensions,
+} from "react-native";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 // Example avatars
 const avatar1 = "https://i.pravatar.cc/150?img=1";
@@ -39,15 +48,26 @@ const allMessages = [
 ];
 
 export default function MessagingScreen() {
+  const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
+  const isTablet = width >= 768;
+  const fabSize = Math.round(Math.min(64, Math.max(48, width * 0.12)));
+  const fabRadius = Math.round(fabSize / 2);
+  const horizontalGap = isTablet ? 32 : 24;
+  const verticalGap = (insets.bottom || 0) + (isTablet ? 32 : 24);
+  const spacer = Math.min(24, Math.max(8, Math.round(width * 0.02)));
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       {/* Top greeting + menu */}
       <TopSection />
 
       {/* Horizontal contact list */}
       <ContactListSection />
 
-      {/* Card section occupying 60% of the screen */}
+      {/* Small dynamic spacer to separate contacts and card */}
+      <View style={{ height: spacer }} />
+
+      {/* Card section anchored to bottom */}
       <View style={{ flex: 1, justifyContent: "flex-end" }}>
         <CardSection
           visible={true}
@@ -59,11 +79,30 @@ export default function MessagingScreen() {
 
       {/* Floating Action Button */}
       <TouchableOpacity
-        style={styles.fab}
+        style={[
+          styles.fab,
+          {
+            right: horizontalGap,
+            bottom: verticalGap,
+            width: fabSize,
+            height: fabSize,
+            borderRadius: fabRadius,
+          },
+        ]}
         activeOpacity={0.8}
         onPress={() => {}}
       >
-        <Text style={styles.fabText}>+</Text>
+        <Text
+          style={[
+            styles.fabText,
+            {
+              fontSize: Math.round(fabSize * 0.5),
+              lineHeight: Math.round(fabSize * 0.52),
+            },
+          ]}
+        >
+          +
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -76,11 +115,6 @@ const styles = StyleSheet.create({
   },
   fab: {
     position: "absolute",
-    right: 24,
-    bottom: 24,
-    width: 56,
-    height: 56,
-    borderRadius: 28,
     backgroundColor: "#6B5ABE",
     alignItems: "center",
     justifyContent: "center",
@@ -99,8 +133,7 @@ const styles = StyleSheet.create({
   },
 });
 
-
 // export const options = {
-//   headerShown: false, 
-//   title: "Home", 
+//   headerShown: false,
+//   title: "Home",
 // };

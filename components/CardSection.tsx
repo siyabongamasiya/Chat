@@ -1,10 +1,14 @@
 import React from "react";
-import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  useWindowDimensions,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import AllMessagesSection from "./AllMessagesSection";
 import HeaderRow from "./HeaderRow";
 import PinnedMessagesSection from "./PinnedMessagesSection";
-
-const { height } = Dimensions.get("window");
 
 type ModalSectionProps = {
   visible: boolean;
@@ -20,9 +24,26 @@ const CardSection: React.FC<ModalSectionProps> = ({
   allMessages,
 }) => {
   if (!visible) return null;
+  const { height } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
+  const heightPct = height < 700 ? 0.55 : height < 900 ? 0.65 : 0.72;
+  const modalHeight = Math.max(300, Math.min(680, height * heightPct));
   return (
-    <View style={styles.modal}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <View
+      style={[
+        styles.modal,
+        {
+          height: modalHeight,
+          paddingBottom: 12 + insets.bottom,
+          paddingLeft: 16 + (insets.left || 0),
+          paddingRight: 16 + (insets.right || 0),
+        },
+      ]}
+    >
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 8 }}
+      >
         {/* Header Row */}
         <HeaderRow />
 
@@ -38,7 +59,6 @@ const CardSection: React.FC<ModalSectionProps> = ({
 
 const styles = StyleSheet.create({
   modal: {
-    height: height * 0.65, // 60% of screen
     backgroundColor: "#fff",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,

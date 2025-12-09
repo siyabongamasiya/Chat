@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     width:"100%",
-    gap:16,
+    gap:13,
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 5,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 
   groupContainer: {
     flexDirection: "row",
-    alignItems: "center",// optional pill background
+    alignItems: "center",
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 100,
