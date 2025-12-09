@@ -58,7 +58,7 @@ const UserListItem: React.FC<Props> = ({
           <MaterialCommunityIcons
             name="check-all"
             size={22}
-            color="#1E90FF" // blue ticks
+            color="#6B5ABE" // match FAB color
           />
         ) : null}
       </View>
