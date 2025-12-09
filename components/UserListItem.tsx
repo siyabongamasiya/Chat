@@ -22,6 +22,18 @@ const UserListItem: React.FC<Props> = ({
   time = "12:00",
   onPress,
 }) => {
+  const displayTime = React.useMemo(() => {
+    const t = (time || "").trim();
+    if (/am|pm/i.test(t)) return t;
+    const m = t.match(/^(\d{1,2}):(\d{2})$/);
+    if (!m) return t;
+    let h = parseInt(m[1], 10);
+    const mm = m[2];
+    const suffix = h >= 12 ? "PM" : "AM";
+    h = h % 12;
+    if (h === 0) h = 12;
+    return `${h}:${mm} ${suffix}`;
+  }, [time]);
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       {/* Avatar */}
@@ -37,7 +49,7 @@ const UserListItem: React.FC<Props> = ({
 
       {/* Right section: time above unread badge OR blue double tick */}
       <View style={styles.rightSection}>
-        <Text style={styles.timeText}>{time}</Text>
+        <Text style={styles.timeText}>{displayTime}</Text>
         {badgeCount > 0 ? (
           <View style={styles.unreadBadge}>
             <Text style={styles.unreadText}>{badgeCount}</Text>
